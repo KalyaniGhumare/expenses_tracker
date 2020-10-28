@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget/intro/colors.dart';
 import 'package:flutter_widget/intro/splash_screen.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Expense Tracker',
         theme: ThemeData(
-          primarySwatch: Colors.brown,
+          primarySwatch: primaryColor,
         ),
         home: SplashScreen());
   }
