@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget/database/dao/app_dao.dart';
 import 'package:flutter_widget/database/db/app_database.dart';
 import 'package:flutter_widget/database/model/user.dart';
+import 'package:flutter_widget/home/home_screen.dart';
 import 'package:flutter_widget/intro/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -92,11 +94,29 @@ class _LoginScreenState extends State<LoginScreen> {
     User user = await appDao.checkUser(mobileNumber, password);
 
     if (user != null) {
+      // Create SharedPreferences Object
+      SharedPreferences pref = await SharedPreferences.getInstance();
+
+      // Save Value into SharedPreferences
+      pref.setInt("SP_KEY_ID", user.id);
+      pref.setString("SP_KEY_FNAME", user.fName);
+      pref.setString("SP_KEY_LNAME", user.lName);
+      pref.setString("SP_KEY_MOBILE", user.mobile);
+      pref.setString("SP_KEY_EMAIL", user.email);
+      pref.setString("SP_KEY_CITY", user.city);
+      pref.setBool("SP_KEY_IS_LOGGING", true);
+
       _scaffoldKey.currentState.showSnackBar(
         SnackBar(
             content: Text("User login successfully"),
             duration: Duration(milliseconds: 3000)),
       );
+      Future.delayed(Duration(milliseconds: 3000), () {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+            (route) => false);
+      });
     } else {
       _scaffoldKey.currentState.showSnackBar(
         SnackBar(
