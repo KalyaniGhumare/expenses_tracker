@@ -30,6 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.0
   floor: ^0.17.0
   shared_preferences: ^0.5.12+2
+  firebase_database: ^4.2.0
+  toast: ^0.1.5
 
 
 dev_dependencies:

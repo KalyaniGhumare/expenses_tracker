@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1062697950895",
+    "firebase_url": "https://expenses-e1853.firebaseio.com",
+    "project_id": "expenses-e1853",
+    "storage_bucket": "expenses-e1853.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062697950895:android:4ae91423f06be99e1bfe5a",
+        "android_client_info": {
+          "package_name": "com.dreambolix.flutter_widget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062697950895-h8o3nrsu4vtclkgkvugf193qpqvr3lpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxdM7SmJZ7f3prWMcTCJTBe6wyvaMd6lU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062697950895-h8o3nrsu4vtclkgkvugf193qpqvr3lpb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

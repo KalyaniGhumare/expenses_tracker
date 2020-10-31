@@ -177,6 +177,13 @@ class _HomeScreenState extends State<HomeScreen> {
         //color: Colors.green,
         child: DashBoardScreen(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddExpenses()));
+        },
+        child: Icon(Icons.add, size: 20),
+      ),
     );
   }
 }
