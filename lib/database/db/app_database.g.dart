@@ -108,6 +108,32 @@ class _$AppDao extends AppDao {
                   'city': item.city,
                   'email': item.email,
                   'password': item.password
+                }),
+        _userUpdateAdapter = UpdateAdapter(
+            database,
+            'User',
+            ['id'],
+            (User item) => <String, dynamic>{
+                  'id': item.id,
+                  'fName': item.fName,
+                  'lName': item.lName,
+                  'mobile': item.mobile,
+                  'city': item.city,
+                  'email': item.email,
+                  'password': item.password
+                }),
+        _userDeletionAdapter = DeletionAdapter(
+            database,
+            'User',
+            ['id'],
+            (User item) => <String, dynamic>{
+                  'id': item.id,
+                  'fName': item.fName,
+                  'lName': item.lName,
+                  'mobile': item.mobile,
+                  'city': item.city,
+                  'email': item.email,
+                  'password': item.password
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -118,12 +144,45 @@ class _$AppDao extends AppDao {
 
   final InsertionAdapter<User> _userInsertionAdapter;
 
+  final UpdateAdapter<User> _userUpdateAdapter;
+
+  final DeletionAdapter<User> _userDeletionAdapter;
+
   @override
   Future<User> checkUser(String mobileNumber, String password) async {
     return _queryAdapter.query(
         'SELECT * FROM User WHERE mobile = ? AND password = ?',
         arguments: <dynamic>[mobileNumber, password],
         mapper: (Map<String, dynamic> row) => User(
+            row['id'] as int,
+            row['fName'] as String,
+            row['lName'] as String,
+            row['city'] as String,
+            row['email'] as String,
+            row['mobile'] as String,
+            row['password'] as String));
+  }
+
+  @override
+  Future<User> readUserDetails(String mobile) async {
+    return _queryAdapter.query('SELECT * FROM User WHERE mobile = ?',
+        arguments: <dynamic>[mobile],
+        mapper: (Map<String, dynamic> row) => User(
+            row['id'] as int,
+            row['fName'] as String,
+            row['lName'] as String,
+            row['city'] as String,
+            row['email'] as String,
+            row['mobile'] as String,
+            row['password'] as String));
+  }
+
+  @override
+  Future<User> readUserDetailsForDeleteRecord(String mobile) async {
+    return _queryAdapter.query('SELECT * FROM User WHERE mobile = ?',
+        arguments: <dynamic>[mobile],
+        mapper: (Map<String, dynamic> row) => User(
+            row['id'] as int,
             row['fName'] as String,
             row['lName'] as String,
             row['city'] as String,
@@ -135,5 +194,16 @@ class _$AppDao extends AppDao {
   @override
   Future<void> insertUser(User user) async {
     await _userInsertionAdapter.insert(user, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<int> updateUser(User user) {
+    return _userUpdateAdapter.updateAndReturnChangedRows(
+        user, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<int> deleteUser(User user) {
+    return _userDeletionAdapter.deleteAndReturnChangedRows(user);
   }
 }

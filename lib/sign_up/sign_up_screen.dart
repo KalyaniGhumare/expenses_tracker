@@ -154,7 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     AppDao appDao = database.appDao;
 
     // Insert Data
-    User user = User(fName, lName, city, email, mobileNumber, password);
+    User user = User(null, fName, lName, city, email, mobileNumber, password);
     await appDao.insertUser(user);
 
     // Create SnackBar Object

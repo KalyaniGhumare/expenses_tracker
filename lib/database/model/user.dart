@@ -7,6 +7,6 @@ class User {
 
   String fName, lName, mobile, city, email, password;
 
-  User(this.fName, this.lName, this.city, this.email, this.mobile,
+  User(this.id, this.fName, this.lName, this.city, this.email, this.mobile,
       this.password);
 }
